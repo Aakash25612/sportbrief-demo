@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { LogOut, Zap } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 import { useApp } from '../context/AppContext'
 
 const navByRole = {
@@ -35,26 +35,20 @@ export default function Layout() {
     <div className="app">
       {currentUser && (
         <header className="topbar">
-          <Link to="/" className="brand">
-            <Zap size={22} />
-            <span>
-              <strong>SportBrief</strong>
-              <small>{roleLabels[currentUser.role]}</small>
-            </span>
-          </Link>
-          <nav className="nav">
+          <Link to="/" className="logo">SportBrief</Link>
+          <nav className="topnav">
             {nav.map(({ to, label, end }) => (
-              <NavLink key={to} to={to} end={end} className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+              <NavLink key={to} to={to} end={end} className={({ isActive }) => (isActive ? 'nav-item active' : 'nav-item')}>
                 {label}
               </NavLink>
             ))}
           </nav>
-          <div className="topbar-right">
+          <div className="topbar-user">
             {currentUser.role === 'creator' && currentUser.verified && (
-              <span className="verified-chip">Verified athlete</span>
+              <span className="verified-chip">Verified</span>
             )}
-            {currentUser.company && <span className="meta-chip">{currentUser.company}</span>}
-            {currentUser.sport && <span className="meta-chip">{currentUser.sport}</span>}
+            {currentUser.company && <span className="user-role">{currentUser.company}</span>}
+            {currentUser.sport && <span className="user-role">{currentUser.sport}</span>}
             <span className="user-name">{currentUser.name}</span>
             <button type="button" className="icon-btn" onClick={() => { logout(); navigate('/') }} aria-label="Sign out">
               <LogOut size={16} />

@@ -34,11 +34,11 @@ export default function Login() {
   }
 
   return (
-    <div className="auth-page">
-      <Link to="/" className="auth-brand">SportBrief</Link>
-      <div className="auth-card">
+    <div className="login-page">
+      <Link to="/" className="login-logo logo">SportBrief</Link>
+      <div className="login-card">
         <h1>Sign in</h1>
-        <p>Choose a demo role or enter credentials below.</p>
+        <p className="login-sub">Choose a demo role or enter credentials below.</p>
         <div className="role-presets">
           {presets.map(({ key, label, desc }) => (
             <button key={key} type="button" className="preset-btn" onClick={() => quickLogin(key)}>
@@ -47,7 +47,7 @@ export default function Login() {
             </button>
           ))}
         </div>
-        <form className="auth-form" onSubmit={submit}>
+        <form className="login-form" onSubmit={submit}>
           {error && <div className="form-error">{error}</div>}
           <label>
             Email
@@ -59,7 +59,7 @@ export default function Login() {
           </label>
           <button type="submit" className="btn btn-primary btn-full">Sign in</button>
         </form>
-        <p className="auth-hint">All demo accounts use password <code>demo123</code>. <Link to="/">Back to home</Link></p>
+        <p className="login-hint">All demo accounts use password <code>demo123</code>. <Link to="/">Back to home</Link></p>
       </div>
     </div>
   )
